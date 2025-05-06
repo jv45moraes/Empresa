@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMain">
+   <children>
+      <TableView fx:id="tableFuncionarios" layoutX="27.0" layoutY="221.0" prefHeight="256.0" prefWidth="546.0">
+        <columns>
+          <TableColumn fx:id="columnID" prefWidth="100.00006103515625" text="id" />
+          <TableColumn fx:id="columnNome" prefWidth="90.39996337890625" text="Nome" />
+            <TableColumn fx:id="columnCargo" prefWidth="90.39996337890625" text="Cargo" />
+            <TableColumn fx:id="columnCPF" prefWidth="91.99993896484375" text="CPF" />
+            <TableColumn fx:id="columnSenha" prefWidth="90.4000244140625" text="Senha" />
+            <TableColumn fx:id="columnNivel" prefWidth="92.00006103515625" text="Nivel" />
+        </columns>
+      </TableView>
+      <Button fx:id="btSalvar" layoutX="27.0" layoutY="186.0" mnemonicParsing="false" onAction="#actionSalvar" text="Salvar" />
+      <Button fx:id="btEditar" layoutX="102.0" layoutY="185.0" mnemonicParsing="false" onAction="#actionEditar" text="Editar" />
+      <Button fx:id="btApagar" layoutX="174.0" layoutY="186.0" mnemonicParsing="false" onAction="#actionApagar" text="Apagar" />
+      <TextField fx:id="txtNome" layoutX="127.0" layoutY="35.0" prefHeight="26.0" prefWidth="187.0" />
+      <TextField fx:id="txtCargo" layoutX="343.0" layoutY="35.0" prefHeight="26.0" prefWidth="172.0" />
+      <TextField fx:id="txtCPF" layoutX="127.0" layoutY="79.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="txtSenha" layoutX="343.0" layoutY="79.0" prefHeight="26.0" prefWidth="172.0" />
+      <TextField fx:id="txtNivel" layoutX="127.0" layoutY="121.0" prefHeight="26.0" prefWidth="96.0" />
+      <Label layoutX="126.0" layoutY="16.0" text="Nome" />
+      <Label layoutX="343.0" layoutY="14.0" text="Cargo" />
+      <Label layoutX="125.0" layoutY="61.0" text="CPF (Somente numeros)" />
+      <Label layoutX="343.0" layoutY="61.0" text="Senha" />
+      <Label layoutX="125.0" layoutY="105.0" text="Nível" />
+   </children>
+</AnchorPane>
