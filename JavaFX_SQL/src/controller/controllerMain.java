@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.Funcionario;
 
 public class controllerMain implements Initializable{
@@ -45,6 +46,9 @@ public class controllerMain implements Initializable{
 
     @FXML
     private TextField txtSenha;
+    
+    @FXML
+    private TextField txtId;
     
     @FXML
     private TableColumn<Funcionario, String> columnCPF;
@@ -97,7 +101,40 @@ public class controllerMain implements Initializable{
 
     @FXML
     void actionEditar(ActionEvent event) {
+    	if(txtId.getText().equals("")) {
+    		Alert msg = new Alert(AlertType.ERROR);
+    		msg.setHeaderText("Erro! ");
+    		msg.setContentText("Erro! Selecione um funcionario para editar!");
+    		msg.show();
+    	}else {
+    		Funcionario funcionario = new Funcionario();
+    		FuncionarioDAO funcDAO = new FuncionarioDAO(); 
+    		
+    		funcionario.setNome(txtNome.getText());
+    		funcionario.setCargo(txtCargo.getText());
+    		funcionario.setCpf(txtCPF.getText());
+    		funcionario.setNivel(txtNivel.getText());
+    		funcionario.setSenha(txtSenha.getText());
+    		funcionario.setId(txtId.getText());
+    		Alert msg = new Alert(AlertType.CONFIRMATION);
+    		msg.setContentText("Deseja realmente editar o funcionario "+ funcionario.getNome()+ "?");
+    		
+    		Optional<ButtonType> resultado = msg.showAndWait();
+    		
+    		if(resultado.isPresent() && resultado.get() == ButtonType.OK) {
+    		funcDAO.update(funcionario);
+    		carregarTable();
 
+    		txtNome.setText("");
+    		txtCargo.setText("");
+    		txtCPF.setText("");
+    		txtNivel.setText("");
+    		txtSenha.setText("");
+    		txtId.setText("");
+    		
+    		}
+    	}
+    	
     }
 
     @FXML
@@ -148,6 +185,22 @@ public class controllerMain implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		carregarTable();
+		
+		tableFuncionarios.setOnMouseClicked((MouseEvent clique) -> {
+			if(clique.getClickCount() == 2) {
+				Funcionario funcionario = new Funcionario();
+				int i = tableFuncionarios.getSelectionModel().getSelectedIndex();
+				funcionario = tableFuncionarios.getItems().get(i);
+				txtNome.setText(funcionario.getNome());
+				txtCPF.setText(funcionario.getCpf());
+				txtCargo.setText(funcionario.getCargo());
+				txtNivel.setText(funcionario.getNivel());
+				txtSenha.setText(funcionario.getSenha());
+				txtId.setText(funcionario.getId());
+				
+			}
+		});
+		
 	}
     		
     
